@@ -15,7 +15,12 @@ public interface CategoryMapper {
     @Select("select * from category " +
             "where create_user = #{userId}")
     List<Category> list(Integer userId);
-
-    @Select("select * from category where id = #{id}")
+    @Select("select * from category " +
+            "where id = #{id}")
     Category findById(Integer id);
+
+    @Insert("update category " +
+            "set category_name = #{categoryName},category_alias = #{categoryAlias}, update_time = #{updateTime} " +
+            "where id = #{id}")
+    void update(Category category);
 }
