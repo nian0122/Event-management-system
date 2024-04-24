@@ -1,11 +1,11 @@
 package org.syr.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.syr.pojo.Article;
 import org.syr.pojo.Result;
+import org.syr.service.ArticleService;
 import org.syr.utils.JwtUtil;
 
 import java.util.Map;
@@ -13,6 +13,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
+    @Autowired
+    private ArticleService articleService;
     @GetMapping("/list")
     public Result<String> list(/*@RequestHeader(name = "Authoriztion") String token, HttpServletResponse response*/){
 //        try {try
@@ -24,5 +26,10 @@ public class ArticleController {
 //            return Result.error("未登录");
 //        }
         return Result.success("所有的文章数据。。。");
+    }
+    @PostMapping
+    public Result add(@RequestBody Article article){
+        articleService.add(article);
+        return Result.success();
     }
 }
