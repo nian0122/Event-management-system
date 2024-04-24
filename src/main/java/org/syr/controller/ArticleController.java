@@ -2,6 +2,7 @@ package org.syr.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.syr.pojo.Article;
 import org.syr.pojo.Result;
@@ -28,7 +29,7 @@ public class ArticleController {
         return Result.success("所有的文章数据。。。");
     }
     @PostMapping
-    public Result add(@RequestBody Article article){
+    public Result add(@RequestBody @Validated Article article){
         articleService.add(article);
         return Result.success();
     }
