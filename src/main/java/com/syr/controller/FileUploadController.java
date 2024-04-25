@@ -15,7 +15,15 @@ public class FileUploadController {
     public Result<String> upload(MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String filename = UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf("."));
-        file.transferTo(new File("E:\\java_object\\files\\"+filename));
-        return Result.success("url访问地址...");
+        // 获取当前工作目录
+        String currentWorkingDir = System.getProperty("user.dir");
+        System.out.println(currentWorkingDir);
+        // 构建相对路径
+        String relativePath = "files/imgs/" + filename;
+        // 构建保存文件的绝对路径
+        String absolutePath = currentWorkingDir + "/" + relativePath;
+        file.transferTo(new File(absolutePath));
+        String url = "file:///" + absolutePath;
+        return Result.success(url);
     }
 }
