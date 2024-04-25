@@ -17,7 +17,6 @@ public class FileUploadController {
         String filename = UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf("."));
         // 获取当前工作目录
         String currentWorkingDir = System.getProperty("user.dir");
-        System.out.println(currentWorkingDir);
         // 构建相对路径
         String relativePath = "files/imgs/" + filename;
         // 构建保存文件的绝对路径
