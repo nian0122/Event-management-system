@@ -40,4 +40,21 @@ public class ArticleServiceImpl implements ArticleService {
         pb.setTotal(p.getTotal());
         return pb;
     }
+
+    @Override
+    public Article findById(Integer id) {
+        Article article = articleMapper.findId(id);
+        return article;
+    }
+
+    @Override
+    public void update(Article article) {
+        article.setUpdateTime(LocalDateTime.now());
+        articleMapper.update(article);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        articleMapper.deleteById(id);
+    }
 }

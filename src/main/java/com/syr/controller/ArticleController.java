@@ -1,6 +1,7 @@
 package com.syr.controller;
 
 import com.syr.pojo.Article;
+import com.syr.pojo.Category;
 import com.syr.pojo.PageBean;
 import com.syr.pojo.Result;
 import com.syr.service.ArticleService;
@@ -27,5 +28,20 @@ public class ArticleController {
     ){
         PageBean<Article> pb = articleService.list(pageNum,pageSize,categoryId,state);
         return Result.success(pb);
+    }
+    @GetMapping("/detail")
+    public Result<Article> detail(Integer id){
+        Article article = articleService.findById(id);
+        return Result.success(article);
+    }
+    @PutMapping
+    public Result update(Article article){
+        articleService.update(article);
+        return Result.success();
+    }
+    @DeleteMapping
+    public  Result delete(Integer id){
+        articleService.deleteById(id);
+        return Result.success();
     }
 }
