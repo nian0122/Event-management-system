@@ -12,7 +12,7 @@ public interface ArticleMapper {
     void add(Article article);
     List<Article> list(Integer userId, Integer categoryId, String state);
     @Select("select * from article where id = #{id}")
-    Article findId(Integer id);
+    Article findById(Integer id);
 
     @Update("update article set content = #{content}, update_time = #{updateTime} " +
             "where id = #{id}")

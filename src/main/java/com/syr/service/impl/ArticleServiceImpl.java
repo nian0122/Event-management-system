@@ -43,7 +43,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article findById(Integer id) {
-        Article article = articleMapper.findId(id);
+        Article article = articleMapper.findById(id);
         return article;
     }
 
