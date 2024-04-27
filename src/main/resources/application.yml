@@ -7,6 +7,11 @@ spring:
   servlet:
     multipart:
       max-file-size: 10MB
+  data:
+    redis:
+      host: 192.168.75.200
+      port: 6379
+      password: 123321
 server:
   port: 8080
 
