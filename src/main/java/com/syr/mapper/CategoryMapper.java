@@ -1,5 +1,6 @@
 package com.syr.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -23,4 +24,6 @@ public interface CategoryMapper {
             "set category_name = #{categoryName},category_alias = #{categoryAlias}, update_time = #{updateTime} " +
             "where id = #{id}")
     void update(Category category);
+    @Delete("delete from category where id = #{id}")
+    void deleteById(Integer id);
 }

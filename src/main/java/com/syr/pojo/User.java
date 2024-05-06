@@ -16,7 +16,7 @@ public class User {
     @JsonIgnore
     private String password;//密码
     @NotEmpty
-    @Pattern(regexp = "^\\s(1,10)$")
+    @Pattern(regexp = "^\\S{1,10}$")
     private String nickname;//昵称
     @NotEmpty
     @Email

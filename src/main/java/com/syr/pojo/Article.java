@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Article {
     private Integer id;//主键ID
     @NotEmpty
-    @Pattern(regexp = "^\\s(1,10)$")
+    @Pattern(regexp = "^\\S{1,10}$")
     private String title;//文章标题
     @NotEmpty
     private String content;//文章内容
