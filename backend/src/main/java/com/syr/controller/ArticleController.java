@@ -1,7 +1,6 @@
 package com.syr.controller;
 
 import com.syr.pojo.Article;
-import com.syr.pojo.Category;
 import com.syr.pojo.PageBean;
 import com.syr.pojo.Result;
 import com.syr.service.ArticleService;
