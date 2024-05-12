@@ -18,11 +18,11 @@ public class FileUploadController {
         // 获取当前工作目录
         String currentWorkingDir = System.getProperty("user.dir");
         // 构建相对路径
-        String relativePath = "files/imgs/" + filename;
+        String relativePath = "src\\main\\resources\\static\\imgs\\" + filename;
         // 构建保存文件的绝对路径
         String absolutePath = currentWorkingDir + "/" + relativePath;
         file.transferTo(new File(absolutePath));
-        String url = "file:///" + absolutePath;
+        String url = "..\\..\\..\\backend\\" + relativePath;
         return Result.success(url);
     }
 }

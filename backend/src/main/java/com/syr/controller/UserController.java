@@ -40,7 +40,7 @@ public class UserController {
         }
     }
     @PostMapping("login")
-    public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{6,16}$")String password){
+    public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{3,16}$")String password){
         User loginUser = userService.findByUsername(username);
         if(loginUser == null) {
             return Result.error("用户名错误");
@@ -73,7 +73,7 @@ public class UserController {
     }
 
     @PatchMapping("updateAvatar")
-    public Result updateAvatar(@RequestParam @URL String avatarUrl){
+    public Result updateAvatar(@RequestParam String avatarUrl){
         userService.updateAvatar(avatarUrl);
         return Result.success();
     }

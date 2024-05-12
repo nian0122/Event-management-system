@@ -14,7 +14,10 @@ import UserResetPasswordVue from '@/views/user/UserResetPassword.vue'
 const routes = [
     { path: '/login', component: LoginVue },
     {
-        path: '/', component: LayoutVue,redirect:'/article/manage', children: [
+        path: '/', 
+        component: LayoutVue,
+        redirect:'/article/manage', 
+        children: [
             { path: '/article/category', component: ArticleCategoryVue },
             { path: '/article/manage', component: ArticleManageVue },
             { path: '/user/info', component: UserInfoVue },

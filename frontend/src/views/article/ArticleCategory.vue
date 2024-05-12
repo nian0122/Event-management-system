@@ -5,27 +5,27 @@ import {
 } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 const categorys = ref([
-    {
-        "id": 3,
-        "categoryName": "美食",
-        "categoryAlias": "my",
-        "createTime": "2023-09-02 12:06:59",
-        "updateTime": "2023-09-02 12:06:59"
-    },
-    {
-        "id": 4,
-        "categoryName": "娱乐",
-        "categoryAlias": "yl",
-        "createTime": "2023-09-02 12:08:16",
-        "updateTime": "2023-09-02 12:08:16"
-    },
-    {
-        "id": 5,
-        "categoryName": "军事",
-        "categoryAlias": "js",
-        "createTime": "2023-09-02 12:08:33",
-        "updateTime": "2023-09-02 12:08:33"
-    }
+    // {
+    //     "id": 3,
+    //     "categoryName": "美食",
+    //     "categoryAlias": "my",
+    //     "createTime": "2023-09-02 12:06:59",
+    //     "updateTime": "2023-09-02 12:06:59"
+    // },
+    // {
+    //     "id": 4,
+    //     "categoryName": "娱乐",
+    //     "categoryAlias": "yl",
+    //     "createTime": "2023-09-02 12:08:16",
+    //     "updateTime": "2023-09-02 12:08:16"
+    // },
+    // {
+    //     "id": 5,
+    //     "categoryName": "军事",
+    //     "categoryAlias": "js",
+    //     "createTime": "2023-09-02 12:08:33",
+    //     "updateTime": "2023-09-02 12:08:33"
+    // }
 ])
 //声明一个异步的函数
 import { articleCategoryListService, articleCategoryAddService, articleCategoryUpdateService,articleCategoryDeleteService } from '@/api/article.js'
@@ -72,11 +72,16 @@ const title = ref('')
 //展示编辑弹窗
 const showDialog = (row) => {
     dialogVisible.value = true; title.value = '编辑分类'
-    //数据拷贝
-    categoryModel.value.categoryName = row.categoryName;
-    categoryModel.value.categoryAlias = row.categoryAlias;
-    //扩展id属性,将来需要传递给后台,完成分类的修改
-    categoryModel.value.id = row.id
+    // //数据拷贝
+    // categoryModel.value.categoryName = row.categoryName;
+    // categoryModel.value.categoryAlias = row.categoryAlias;
+    // //扩展id属性,将来需要传递给后台,完成分类的修改
+    // categoryModel.value.id = row.id
+    categoryModel.value = {
+    categoryName: row.categoryName,
+    categoryAlias: row.categoryAlias,
+    id: row.id
+  }
 }
 
 //编辑分类
@@ -95,8 +100,12 @@ const updateCategory = async () => {
 
 //清空模型的数据
 const clearData = () => {
-    categoryModel.value.categoryName = '';
-    categoryModel.value.categoryAlias = '';
+    // categoryModel.value.categoryName = '';
+    // categoryModel.value.categoryAlias = '';
+    categoryModel.value = {
+    categoryName: '',
+    categoryAlias: '',
+  }
 }
 
 //删除分类

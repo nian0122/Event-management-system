@@ -13,8 +13,9 @@ const userInfoStore = useUserInfoStore();
 const imgUrl= ref(userInfoStore.info.userPic)
 
 //图片上传成功的回调函数
-const uploadSuccess = (result)=>{
+const uploadSuccess = (result,uploadFile)=>{
     imgUrl.value = result.data;
+    ElMessage.success("图片上传成功")
 }
 
 
@@ -29,7 +30,10 @@ const updateAvatar = async ()=>{
     ElMessage.success(result.msg? result.msg:'修改成功')
 
     //修改pinia中的数据
-    userInfoStore.info.userPic = imgUrl.value
+    userInfoStore.setInfo({
+        ...userInfoStore.userInfo,
+        userPic: imgUrl.value
+    })
 }
 </script>
 

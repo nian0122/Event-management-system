@@ -3,8 +3,15 @@ import {
     Edit,
     Delete
 } from '@element-plus/icons-vue'
-
+import {
+  articleAddService,
+  articleCategoryListService,
+  articleDeleteService,
+  articleListService,
+  articleUpdateService
+} from "@/api/article";
 import { ref } from 'vue'
+import { ElMessageBox } from 'element-plus'
 
 //文章分类数据模型
 const categorys = ref([
@@ -88,8 +95,8 @@ const onCurrentChange = (num) => {
 }
 
 
-//回显文章分类
-import { articleCategoryListService, articleListService,articleAddService } from '@/api/article.js'
+// //回显文章分类
+// import { articleCategoryListService, articleListService,articleAddService } from '@/api/article.js'
 const articleCategoryList = async () => {
     let result = await articleCategoryListService();
 
@@ -144,11 +151,20 @@ const articleModel = ref({
 import { useTokenStore } from '@/stores/token.js';
 const tokenStore = useTokenStore();
 
+const imgUrl = ref('')
 //上传成功的回调函数
-const uploadSuccess = (result)=>{
+const uploadSuccess = (result,uploadFile)=>{
     articleModel.value.coverImg = result.data;
-    console.log(result.data);
+    console.log("----",result.data);
+    articleModel.value= URL.createObjectURL(uploadFile.raw)
+    console.log(imgUrl);
 }
+
+// const beforeAvatarUpload = (rawFile) => {
+//     console.log("-------")
+//     articleModel.value.coverImg = URL.createObjectURL(rawFile.raw)
+//     return true;
+// }
 
 //添加文章
 import {ElMessage} from 'element-plus'
@@ -167,6 +183,59 @@ const addArticle = async (clickState)=>{
     //刷新当前列表
     articleList()
 }
+
+// 修改与删除
+const showEditDialog = (row, title) => {
+  visibleDrawer.value = true
+  drawerTitle.value = title
+  articleModel.value = {
+    ...row
+  }
+}
+
+const showAddDialog = (title) => {
+  clearData()
+  drawerTitle.value = title
+  visibleDrawer.value = true
+}
+const clearData = () => {
+  articleModel.value = {
+    title: '',
+    categoryId: '',
+    coverImg: '',
+    content: '',
+    state: ''
+  }
+}
+
+const updateArticle = async (clickState) => {
+  articleModel.value.state = clickState
+  await articleUpdateService(articleModel.value);
+  ElMessage.success("添加成功")
+  visibleDrawer.value = false
+  await articleList()
+}
+
+
+const deleteArticle = (row) => {
+  ElMessageBox.confirm(
+      '你确认要删除该文章信息吗？',
+      '温馨提示',
+      {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }
+  ).then(
+      async () => {
+        await articleDeleteService(row.id)
+        console.table(row)
+        ElMessage.success("删除成功")
+        await articleList()
+      }
+  )
+}
+
 </script>
 <template>
     <el-card class="page-container">
@@ -182,7 +251,11 @@ const addArticle = async (clickState)=>{
         <el-form inline>
             <el-form-item label="文章分类：">
                 <el-select placeholder="请选择" v-model="categoryId">
-                    <el-option v-for="c in categorys" :key="c.id" :label="c.categoryName" :value="c.id">
+                    <el-option 
+                        v-for="c in categorys" 
+                        :key="c.id" 
+                        :label="c.categoryName" 
+                        :value="c.id">
                     </el-option>
                 </el-select>
             </el-form-item>
@@ -206,8 +279,8 @@ const addArticle = async (clickState)=>{
             <el-table-column label="状态" prop="state"></el-table-column>
             <el-table-column label="操作" width="100">
                 <template #default="{ row }">
-                    <el-button :icon="Edit" circle plain type="primary"></el-button>
-                    <el-button :icon="Delete" circle plain type="danger"></el-button>
+                    <el-button :icon="Edit" circle plain type="primary" @click="showEditDialog(row,'编辑文章')"></el-button>
+                    <el-button :icon="Delete" circle plain type="danger" @click="deleteArticle(row)"></el-button>
                 </template>
             </el-table-column>
             <template #empty>

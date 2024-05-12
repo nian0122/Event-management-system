@@ -22,6 +22,7 @@ const getUserInfo = async()=>{
     let result = await userInfoService();
     //数据存储到pinia中
     userInfoStore.setInfo(result.data);
+    console.log(userInfoStore.info.userPic);
 }
 
 getUserInfo();
@@ -121,8 +122,9 @@ const handleCommand = (command)=>{
         <!-- 右侧主区域 -->
         <el-container>
             <!-- 头部区域 -->
-            <el-header>
+            <el-header class = "test">
                 <div>程序员：<strong>{{ userInfoStore.info.nickname }}</strong></div>
+
                 <!-- 下拉菜单 -->
                 <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
                 <el-dropdown placement="bottom-end" @command="handleCommand">
