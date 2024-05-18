@@ -123,7 +123,7 @@ const handleCommand = (command)=>{
         <el-container>
             <!-- 头部区域 -->
             <el-header class = "test">
-                <div>程序员：<strong>{{ userInfoStore.info.nickname }}</strong></div>
+                <div>管理员：<strong>{{ userInfoStore.info.nickname }}</strong></div>
 
                 <!-- 下拉菜单 -->
                 <!-- command: 条目被点击后会触发,在事件函数上可以声明一个参数,接收条目对应的指令 -->
@@ -152,7 +152,7 @@ const handleCommand = (command)=>{
                 <router-view></router-view>
             </el-main>
             <!-- 底部区域 -->
-            <el-footer>大事件</el-footer>
+            <el-footer></el-footer>
         </el-container>
     </el-container>
 </template>
@@ -164,10 +164,10 @@ const handleCommand = (command)=>{
     .el-aside {
         background-color: #232323;
 
-        &__logo {
-            height: 120px;
-            background: url('@/assets/logo.png') no-repeat center / 120px auto;
-        }
+        // &__logo {
+        //     height: 120px;
+        //     background: url('@/assets/logo.png') no-repeat center / 120px auto;
+        // }
 
         .el-menu {
             border-right: none;

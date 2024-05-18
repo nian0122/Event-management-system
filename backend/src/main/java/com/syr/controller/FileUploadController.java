@@ -17,12 +17,14 @@ public class FileUploadController {
         String filename = UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf("."));
         // 获取当前工作目录
         String currentWorkingDir = System.getProperty("user.dir");
+        currentWorkingDir = currentWorkingDir.substring(0, currentWorkingDir.lastIndexOf("\\"));
         // 构建相对路径
-        String relativePath = "src\\main\\resources\\static\\imgs\\" + filename;
+        String relativePath = "frontend\\static\\imgs\\" + filename;
         // 构建保存文件的绝对路径
-        String absolutePath = currentWorkingDir + "/" + relativePath;
+        String absolutePath = currentWorkingDir + "\\" + relativePath;
+        System.out.println(absolutePath);
         file.transferTo(new File(absolutePath));
-        String url = "..\\..\\..\\backend\\" + relativePath;
+        String url = "../static/imgs/" + filename;
         return Result.success(url);
     }
 }

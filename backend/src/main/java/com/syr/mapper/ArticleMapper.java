@@ -14,7 +14,7 @@ public interface ArticleMapper {
     @Select("select * from article where id = #{id}")
     Article findById(Integer id);
 
-    @Update("update article set content = #{content}, update_time = #{updateTime} " +
+    @Update("update article set title=#{title},content=#{content},cover_img=#{coverImg},state=#{state},category_id=#{categoryId},update_time=now() " +
             "where id = #{id}")
     void update(Article article);
     @Delete("delete from article where id = #{id}")

@@ -15,9 +15,9 @@ public class Article {
     @NotEmpty
     @Pattern(regexp = "^\\S{1,10}$")
     private String title;//文章标题
-    @NotEmpty
+//    @NotEmpty
     private String content;//文章内容
-    @NotEmpty
+//    @NotEmpty
     private String coverImg;//封面图像
     @State
     private String state;//发布状态 已发布|草稿

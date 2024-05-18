@@ -137,7 +137,8 @@ const clearRegisterData = ()=>{
                 </el-form-item>
                 <!-- 登录按钮 -->
                 <el-form-item>
-                    <el-button class="button" type="primary" auto-insert-space @click="login">登录</el-button>
+                    <el-button class="button" type="primary" auto-insert-space @click="login">
+                        登录</el-button>
                 </el-form-item>
                 <el-form-item class="flex">
                     <el-link type="info" :underline="false" @click="isRegister = true;clearRegisterData()">
@@ -156,7 +157,7 @@ const clearRegisterData = ()=>{
     background-color: #fff;
 
     .bg {
-        background: url('@/assets/logo2.png') no-repeat 60% center / 240px auto,
+        background: url('@/assets/login_title.png') no-repeat 60% center / 240px auto,
             url('@/assets/login_bg.jpg') no-repeat center / cover;
         border-radius: 0 20px 20px 0;
     }

@@ -13,7 +13,7 @@ const userInfoStore = useUserInfoStore();
 const imgUrl= ref(userInfoStore.info.userPic)
 
 //图片上传成功的回调函数
-const uploadSuccess = (result,uploadFile)=>{
+const uploadSuccess = (result)=>{
     imgUrl.value = result.data;
     ElMessage.success("图片上传成功")
 }
@@ -35,6 +35,7 @@ const updateAvatar = async ()=>{
         userPic: imgUrl.value
     })
 }
+
 </script>
 
 <template>
@@ -57,7 +58,7 @@ const updateAvatar = async ()=>{
                     :on-success="uploadSuccess"
                     >
                     <img v-if="imgUrl" :src="imgUrl" class="avatar" />
-                    <img v-else src="avatar" width="278" />
+                    <img v-else :src="avatar" width="278" />
                 </el-upload>
                 <br />
                 <el-button type="primary" :icon="Plus" size="large"  @click="uploadRef.$el.querySelector('input').click()">

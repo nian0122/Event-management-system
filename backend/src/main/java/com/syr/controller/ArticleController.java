@@ -34,7 +34,7 @@ public class ArticleController {
         return Result.success(article);
     }
     @PutMapping
-    public Result update(Article article){
+    public Result update(@RequestBody Article article){
         articleService.update(article);
         return Result.success();
     }
