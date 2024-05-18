@@ -31,14 +31,15 @@ const checkRePassword = (rule, value, callback) => {
 const rules = {
   old_pwd: [
     {required: true, message: '请输入旧密码?', trigger: 'blur'},
-    {min: 5, max: 16, message: '长度为5-16位', trigger: 'blur'},
+    {min: 6, max: 16, message: '长度为6-16位', trigger: 'blur'},
   ],
   new_pwd: [
     {required: true, message: '请输入新密码', trigger: 'blur'},
-    {min: 5, max: 16, message: '长度为5-16位', trigger: 'blur'},
+    {min: 6, max: 16, message: '长度为6-16位', trigger: 'blur'},
   ],
   re_pwd: [
     {required: true, message: '请输入确认新密码', trigger: 'blur'},
+    {min: 6, max: 16, message: '长度为6-16位', trigger: 'blur'},
     {validator: checkRePassword, trigger: 'blur'},
   ]
 }

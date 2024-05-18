@@ -33,12 +33,29 @@ export const userInfoUpdateService = (userInfoData)=>{
 
 //修改头像
 export const userAvatarUpdateService = (avatarUrl)=>{
-    const params = new URLSearchParams();
-    params.append('avatarUrl',avatarUrl)
-    return request.patch('/user/updateAvatar',params)
+    const urlSearchParams = new URLSearchParams();
+    urlSearchParams.append('avatarUrl',avatarUrl)
+    return request.patch('/user/updateAvatar',urlSearchParams)
 }
 
 //修改密码
 export const userPwdUpdateService = (pwdData) => {
     return request.patch('/user/updatePwd', pwdData)
   }
+
+// export function displayAvatar(currentID) {
+//     // 发送请求获取头像文件
+//     fetch(`/api/avatar?id=${currentID}`)
+//       .then(response => response.blob()) // 将响应转换为 Blob 对象
+//       .then(blob => {
+//         // 创建一个临时的 URL 用于预览头像文件
+//         const imageUrl = URL.createObjectURL(blob);
+        
+//         // 在页面上显示头像
+//         const avatarImage = document.getElementById('avatar-image');
+//         avatarImage.src = imageUrl;
+//       })
+//       .catch(error => {
+//         console.error('Error fetching avatar:', error);
+//       });
+//   }

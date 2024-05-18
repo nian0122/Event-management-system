@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/big_event
+    username: root
+    password: 123456
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  data:
+    redis:
+      host: 192.168.75.200
+      port: 6379
+      password: 123321
+server:
+  port: 8080
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

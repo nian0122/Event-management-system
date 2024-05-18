@@ -15,27 +15,27 @@ import { ElMessageBox } from 'element-plus'
 
 //文章分类数据模型
 const categorys = ref([
-    {
-        "id": 3,
-        "categoryName": "美食",
-        "categoryAlias": "my",
-        "createTime": "2023-09-02 12:06:59",
-        "updateTime": "2023-09-02 12:06:59"
-    },
-    {
-        "id": 4,
-        "categoryName": "娱乐",
-        "categoryAlias": "yl",
-        "createTime": "2023-09-02 12:08:16",
-        "updateTime": "2023-09-02 12:08:16"
-    },
-    {
-        "id": 5,
-        "categoryName": "军事",
-        "categoryAlias": "js",
-        "createTime": "2023-09-02 12:08:33",
-        "updateTime": "2023-09-02 12:08:33"
-    }
+    // {
+    //     "id": 3,
+    //     "categoryName": "美食",
+    //     "categoryAlias": "my",
+    //     "createTime": "2023-09-02 12:06:59",
+    //     "updateTime": "2023-09-02 12:06:59"
+    // },
+    // {
+    //     "id": 4,
+    //     "categoryName": "娱乐",
+    //     "categoryAlias": "yl",
+    //     "createTime": "2023-09-02 12:08:16",
+    //     "updateTime": "2023-09-02 12:08:16"
+    // },
+    // {
+    //     "id": 5,
+    //     "categoryName": "军事",
+    //     "categoryAlias": "js",
+    //     "createTime": "2023-09-02 12:08:33",
+    //     "updateTime": "2023-09-02 12:08:33"
+    // }
 ])
 
 //用户搜索时选中的分类id
@@ -46,36 +46,36 @@ const state = ref('')
 
 //文章列表数据模型
 const articles = ref([
-    {
-        "id": 5,
-        "title": "陕西旅游攻略",
-        "content": "兵马俑,华清池,法门寺,华山...爱去哪去哪...",
-        "coverImg": "https://big-event-gwd.oss-cn-beijing.aliyuncs.com/9bf1cf5b-1420-4c1b-91ad-e0f4631cbed4.png",
-        "state": "草稿",
-        "categoryId": 2,
-        "createTime": "2023-09-03 11:55:30",
-        "updateTime": "2023-09-03 11:55:30"
-    },
-    {
-        "id": 5,
-        "title": "陕西旅游攻略",
-        "content": "兵马俑,华清池,法门寺,华山...爱去哪去哪...",
-        "coverImg": "https://big-event-gwd.oss-cn-beijing.aliyuncs.com/9bf1cf5b-1420-4c1b-91ad-e0f4631cbed4.png",
-        "state": "草稿",
-        "categoryId": 2,
-        "createTime": "2023-09-03 11:55:30",
-        "updateTime": "2023-09-03 11:55:30"
-    },
-    {
-        "id": 5,
-        "title": "陕西旅游攻略",
-        "content": "兵马俑,华清池,法门寺,华山...爱去哪去哪...",
-        "coverImg": "https://big-event-gwd.oss-cn-beijing.aliyuncs.com/9bf1cf5b-1420-4c1b-91ad-e0f4631cbed4.png",
-        "state": "草稿",
-        "categoryId": 2,
-        "createTime": "2023-09-03 11:55:30",
-        "updateTime": "2023-09-03 11:55:30"
-    },
+    // {
+    //     "id": 5,
+    //     "title": "陕西旅游攻略",
+    //     "content": "兵马俑,华清池,法门寺,华山...爱去哪去哪...",
+    //     "coverImg": "https://big-event-gwd.oss-cn-beijing.aliyuncs.com/9bf1cf5b-1420-4c1b-91ad-e0f4631cbed4.png",
+    //     "state": "草稿",
+    //     "categoryId": 2,
+    //     "createTime": "2023-09-03 11:55:30",
+    //     "updateTime": "2023-09-03 11:55:30"
+    // },
+    // {
+    //     "id": 5,
+    //     "title": "陕西旅游攻略",
+    //     "content": "兵马俑,华清池,法门寺,华山...爱去哪去哪...",
+    //     "coverImg": "https://big-event-gwd.oss-cn-beijing.aliyuncs.com/9bf1cf5b-1420-4c1b-91ad-e0f4631cbed4.png",
+    //     "state": "草稿",
+    //     "categoryId": 2,
+    //     "createTime": "2023-09-03 11:55:30",
+    //     "updateTime": "2023-09-03 11:55:30"
+    // },
+    // {
+    //     "id": 5,
+    //     "title": "陕西旅游攻略",
+    //     "content": "兵马俑,华清池,法门寺,华山...爱去哪去哪...",
+    //     "coverImg": "https://big-event-gwd.oss-cn-beijing.aliyuncs.com/9bf1cf5b-1420-4c1b-91ad-e0f4631cbed4.png",
+    //     "state": "草稿",
+    //     "categoryId": 2,
+    //     "createTime": "2023-09-03 11:55:30",
+    //     "updateTime": "2023-09-03 11:55:30"
+    // },
 ])
 
 //分页条数据模型
@@ -137,6 +137,8 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css'
 import { Plus } from '@element-plus/icons-vue'
 //控制抽屉是否显示
 const visibleDrawer = ref(false)
+const drawerTitle = ref('')
+
 //添加表单数据模型
 const articleModel = ref({
     title: '',
@@ -155,9 +157,7 @@ const imgUrl = ref('')
 //上传成功的回调函数
 const uploadSuccess = (result,uploadFile)=>{
     articleModel.value.coverImg = result.data;
-    console.log("----",result.data);
-    articleModel.value= URL.createObjectURL(uploadFile.raw)
-    console.log(imgUrl);
+    articleModel.imgUrl= URL.createObjectURL(uploadFile.raw)
 }
 
 // const beforeAvatarUpload = (rawFile) => {
@@ -210,6 +210,7 @@ const clearData = () => {
 
 const updateArticle = async (clickState) => {
   articleModel.value.state = clickState
+  console.log(articleModel.value)
   await articleUpdateService(articleModel.value);
   ElMessage.success("添加成功")
   visibleDrawer.value = false
@@ -243,7 +244,7 @@ const deleteArticle = (row) => {
             <div class="header">
                 <span>文章管理</span>
                 <div class="extra">
-                    <el-button type="primary" @click="visibleDrawer = true">添加文章</el-button>
+                    <el-button type="primary" @click="showAddDialog('添加文章')">添加文章</el-button>
                 </div>
             </div>
         </template>
@@ -329,13 +330,17 @@ const deleteArticle = (row) => {
                 </el-form-item>
                 <el-form-item label="文章内容">
                     <div class="editor">
-                        <quill-editor theme="snow" v-model:content="articleModel.content" contentType="html">
+                        <quill-editor 
+                            theme="snow" 
+                            v-model:content="articleModel.content" 
+                            contentType="html"
+                        >
                         </quill-editor>
                     </div>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="addArticle('已发布')">发布</el-button>
-                    <el-button type="info" @click="addArticle('草稿')">草稿</el-button>
+                    <el-button type="primary" @click="drawerTitle==='添加文章'?addArticle('已发布'):updateArticle('已发布')">发布</el-button>
+                    <el-button type="info" @click="drawerTitle==='添加文章'?addArticle('草稿'):updateArticle('草稿')">草稿</el-button>
                 </el-form-item>
             </el-form>
         </el-drawer>

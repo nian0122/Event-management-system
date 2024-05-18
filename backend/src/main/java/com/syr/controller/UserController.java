@@ -28,7 +28,7 @@ public class UserController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @PostMapping("/register")
-    public Result register(@Pattern(regexp = "^\\S{3,16}$") String username, @Pattern(regexp = "^\\S{6,16}$")String password){
+    public Result register(@Pattern(regexp = "^\\S{2,16}$") String username, @Pattern(regexp = "^\\S{6,16}$")String password){
         System.out.println(username);
         System.out.println(password);
         User u = userService.findByUsername(username);
@@ -40,7 +40,7 @@ public class UserController {
         }
     }
     @PostMapping("login")
-    public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{3,16}$")String password){
+    public Result<String> login(@Pattern(regexp = "^\\S{2,16}$") String username, @Pattern(regexp = "^\\S{6,16}$")String password){
         User loginUser = userService.findByUsername(username);
         if(loginUser == null) {
             return Result.error("用户名错误");

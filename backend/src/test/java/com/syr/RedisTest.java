@@ -12,9 +12,8 @@ public class RedisTest {
     private StringRedisTemplate stringRedisTemplate;
     @Test
     public void testSet(){
-        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
-        operations.set("name","Jack");
-        String name = operations.get("name");
-        System.out.println("name:"+name);
+        String currentWorkingDir = System.getProperty("user.dir");
+        currentWorkingDir = currentWorkingDir.substring(0, currentWorkingDir.lastIndexOf("\\"));
+        System.out.println(currentWorkingDir);
     }
 }

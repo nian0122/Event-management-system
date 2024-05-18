@@ -49,7 +49,6 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void update(Article article) {
-        article.setUpdateTime(LocalDateTime.now());
         articleMapper.update(article);
     }
 

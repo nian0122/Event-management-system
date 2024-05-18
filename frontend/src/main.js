@@ -9,6 +9,8 @@ import {createPinia} from 'pinia'
 import { createPersistedState } from 'pinia-persistedstate-plugin'
 import locale from 'element-plus/dist/locale/zh-cn.js'
 
+// VueElement.prototype.$host = 'http://localhost:8080'
+
 const app = createApp(App);
 const pinia = createPinia();
 const persist = createPersistedState();
