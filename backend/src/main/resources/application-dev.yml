@@ -3,15 +3,15 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/big_event
     username: root
-    password: 123456
+    password: ${SPRING_DATASOURCE_PASSWORD:defaultPassword}  # 使用环境变量或默认值
   servlet:
     multipart:
       max-file-size: 10MB
   data:
     redis:
-      host: 192.168.75.1
+      host: localhost
       port: 26379
-      password: 123456
+      password: ${SPRING_REDIS_PASSWORD:defaultPassword}  # 使用环境变量或默认值
 server:
   port: 8080
 
@@ -19,3 +19,15 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# GitHub配置
+github:
+  token: ${GITHUB_TOKEN}  # 使用环境变量
+  owner: nianer0122
+  repo: repos1
+  branch: main
+
+# img-server
+image:
+  compression:
+    quality: 0.8

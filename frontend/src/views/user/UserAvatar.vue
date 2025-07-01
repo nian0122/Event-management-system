@@ -47,12 +47,12 @@ const updateAvatar = async ()=>{
         </template>
         <el-row>
             <el-col :span="12">
-                <el-upload 
+                <el-upload
                     ref="uploadRef"
-                    class="avatar-uploader" 
+                    class="avatar-uploader"
                     :show-file-list="false"
                     :auto-upload="true"
-                    action="/api/upload"
+                    action="/api/image/upload"
                     name="file"
                     :headers="{'Authorization':tokenStore.token}"
                     :on-success="uploadSuccess"

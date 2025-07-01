@@ -252,10 +252,10 @@ const deleteArticle = (row) => {
         <el-form inline>
             <el-form-item label="文章分类：">
                 <el-select placeholder="请选择" v-model="categoryId">
-                    <el-option 
-                        v-for="c in categorys" 
-                        :key="c.id" 
-                        :label="c.categoryName" 
+                    <el-option
+                        v-for="c in categorys"
+                        :key="c.id"
+                        :label="c.categoryName"
                         :value="c.id">
                     </el-option>
                 </el-select>
@@ -308,16 +308,16 @@ const deleteArticle = (row) => {
                 </el-form-item>
                 <el-form-item label="文章封面">
 
-                    <!-- 
+                    <!--
                         auto-upload:设置是否自动上传
                         action:设置服务器接口路径
                         name:设置上传的文件字段名
                         headers:设置上传的请求头
                         on-success:设置上传成功的回调函数
                      -->
-                   
+
                     <el-upload class="avatar-uploader" :auto-upload="true" :show-file-list="false"
-                    action="/api/upload"
+                    action="/api/image/upload"
                     name="file"
                     :headers="{'Authorization':tokenStore.token}"
                     :on-success="uploadSuccess"
@@ -330,9 +330,9 @@ const deleteArticle = (row) => {
                 </el-form-item>
                 <el-form-item label="文章内容">
                     <div class="editor">
-                        <quill-editor 
-                            theme="snow" 
-                            v-model:content="articleModel.content" 
+                        <quill-editor
+                            theme="snow"
+                            v-model:content="articleModel.content"
                             contentType="html"
                         >
                         </quill-editor>
